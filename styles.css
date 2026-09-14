@@ -97,7 +97,7 @@ body {
   background: var(--paper); border: 1px solid var(--edge); box-shadow: 3px 3px 0 var(--shadow);
 }
 .bar .who { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; font-size: 16px; color: var(--ink); text-decoration: none; }
-.bar nav { display: flex; align-items: center; gap: 4px; }
+.bar nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .bar nav a { color: var(--mute); text-decoration: none; font-size: 14px; padding: 4px 10px; border-radius: 3px; white-space: nowrap; }
 .bar nav a:hover { color: var(--ink); background: var(--card); }
 /* aria-current="page" is set by hand in each html file on its own link */
@@ -163,6 +163,21 @@ body {
 .ledger { list-style: none; margin: 0; padding: 0; }
 .ledger li { display: grid; grid-template-columns: 84px 1fr; gap: 12px; line-height: 26px; }
 .ledger .k { color: var(--mute); }
+
+/* "on my desk" list: a highlighted role, the place after it, one line under.
+   No borders or extra rules; the paper's own lines separate entries.
+   --hi is the highlighter; it's defined here because only this uses it. */
+.recent { list-style: none; margin: 0; padding: 0; --hi: #efe2a3; }
+[data-theme="dark"] .recent { --hi: #5d5330; }
+.recent li { display: grid; padding-bottom: 26px; }
+.recent li:last-child { padding-bottom: 0; }
+.recent .chip { line-height: 26px; color: var(--mute); }
+.recent .chip strong {
+  color: var(--ink); font-weight: 600;
+  background: linear-gradient(transparent 20%, var(--hi) 20%, var(--hi) 88%, transparent 88%);
+  padding: 0 4px; margin-left: -4px;
+}
+.recent li > span:last-child:not(.chip) { color: var(--mute); }
 
 /* dated log */
 .log { list-style: none; margin: 0; padding: 0; }
