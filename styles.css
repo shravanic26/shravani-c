@@ -1,0 +1,199 @@
+/* ============================================================
+   shravani-c · styles.css
+   Hand-written CSS, no frameworks.
+
+   The idea: ruled note sheets pinned to a dotted desk pad.
+   Every page is a few "blocks" (one ruled sheet each) laid out
+   on the desk, under one thin header strip that holds the nav.
+
+   How to read this file:
+     1. tokens   — every color lives here; change one, it changes everywhere
+     2. base     — body, links, headings
+     3. desk     — the dotted background and page width
+     4. bar      — the header strip with the nav
+     5. block    — the ruled sheet, the pin, the title underline
+     6. layouts  — how blocks sit next to each other
+     7. pieces   — lists, cards, photos used inside blocks
+     8. mobile   — what changes on narrow screens
+   ============================================================ */
+
+
+/* ---- 1. tokens ------------------------------------------------
+   Light is the default. The dark block below only redefines the
+   same names, so nothing else in the file needs to know about
+   dark mode. The desk lamp (theme.js) sets data-theme on <html>. */
+:root {
+  color-scheme: light;
+  --desk:   #ebe5d9;   /* the desk pad */
+  --dot:    #c4b9a6;   /* the dots on it */
+  --paper:  #f6f1e7;   /* a sheet */
+  --line:   #dfd7c9;   /* the rules on a sheet */
+  --edge:   #c9bfae;   /* sheet border, title underline */
+  --ink:    #2b2823;   /* text */
+  --mute:   #7a7267;   /* secondary text */
+  --pen:    #a8433d;   /* links, the active nav mark */
+  --card:   #f1eadc;   /* nav hover */
+  --shadow: #3a3128;   /* the hard drop shadow */
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --desk:   #1a1816;
+  --dot:    #34302b;
+  --paper:  #26231f;
+  --line:   #35312b;
+  --edge:   #3f3a33;
+  --ink:    #ebe5d8;
+  --mute:   #a39a8c;
+  --pen:    #e0857c;
+  --card:   #2c2823;
+  --shadow: #000000;
+}
+
+
+/* ---- 2. base ----------------------------------------------------
+   One number matters more than any other here: line-height 26px.
+   The rules on every sheet are also 26px apart, so text sits on
+   the lines. Anything inside a block should keep to 26px rows. */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 15.5px;
+  line-height: 26px;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--pen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--pen); outline-offset: 2px; }
+
+h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.mute { color: var(--mute); }
+.small { font-size: 14px; }
+
+
+/* ---- 3. desk ----------------------------------------------------
+   The dotted pad is one tiny radial gradient (a dot) repeated
+   every 16px. Change 16px for a denser or sparser grid, 1px for
+   bigger dots. */
+body {
+  background-color: var(--desk);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.4px);
+  background-size: 16px 16px;
+}
+
+.desk { max-width: 980px; margin: 0 auto; padding: 28px 24px 40px; }
+
+
+/* ---- 4. bar (header + nav) -------------------------------------- */
+.bar {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 10px 18px; margin-bottom: 26px;
+  background: var(--paper); border: 1px solid var(--edge); box-shadow: 3px 3px 0 var(--shadow);
+}
+.bar .who { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; font-size: 16px; color: var(--ink); text-decoration: none; }
+.bar nav { display: flex; align-items: center; gap: 4px; }
+.bar nav a { color: var(--mute); text-decoration: none; font-size: 14px; padding: 4px 10px; border-radius: 3px; }
+.bar nav a:hover { color: var(--ink); background: var(--card); }
+/* aria-current="page" is set by hand in each html file on its own link */
+.bar nav a[aria-current="page"] { color: var(--ink); font-weight: 600; box-shadow: inset 0 -2px 0 var(--pen); border-radius: 0; }
+
+/* the desk lamp = dark mode toggle */
+.lamp {
+  border: 1px solid var(--edge); background: transparent; color: var(--mute);
+  border-radius: 999px; width: 28px; height: 28px; margin-left: 8px;
+  display: inline-grid; place-items: center; cursor: pointer;
+}
+.lamp svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+
+
+/* ---- 5. block (one ruled sheet) --------------------------------
+   The rules: a repeating gradient, transparent for 25px then a
+   1px line, so one line every 26px. background-position 16px
+   matches the top padding so the first line sits under the title. */
+.block {
+  position: relative;
+  background: var(--paper); border: 1px solid var(--edge); box-shadow: 3px 3px 0 var(--shadow);
+  padding: 16px 22px 20px;
+  background-image: repeating-linear-gradient(transparent 0 25px, var(--line) 25px 26px);
+  background-position: 0 16px;
+}
+.block.plain { background-image: none; }   /* for blocks that hold photos */
+
+/* the push pin: a small inline SVG, brass so it sits in the beige */
+.block::before {
+  content: ""; position: absolute; top: -8px; left: 50%; width: 16px; height: 22px; margin-left: -8px;
+  pointer-events: none; opacity: .9;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 26'%3E%3Cpath d='M10 12v12' stroke='%238a8073' stroke-width='1.4' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='8' r='6.5' fill='%23c2ad8a'/%3E%3Ccircle cx='10' cy='8' r='6.5' fill='none' stroke='%239b8766' stroke-width='1'/%3E%3Ccircle cx='7.8' cy='5.8' r='1.8' fill='%23e6d7bb' opacity='.9'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+/* block title: 25px of text + 1px underline = exactly one 26px row,
+   so the underline lands on the first rule */
+.block > h2 { font-size: 15px; line-height: 25px; letter-spacing: .02em; border-bottom: 1px solid var(--edge); }
+.block > h2 small { font-weight: 400; color: var(--mute); font-family: "Source Sans 3", system-ui, sans-serif; margin-left: 8px; font-size: 13px; letter-spacing: 0; }
+.block h1 { font-size: 22px; line-height: 26px; }
+
+
+/* ---- 6. layouts ---------------------------------------------------
+   .sheet stacks blocks vertically with a 26px gap.
+   .cols puts blocks side by side; .wide makes the left one bigger. */
+.sheet { display: grid; gap: 26px; }
+.cols  { display: grid; gap: 26px; grid-template-columns: 1fr 1fr; align-items: start; }
+.cols.wide { grid-template-columns: 1.6fr 1fr; }
+.stack { display: grid; gap: 26px; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+.cards.one { grid-template-columns: 1fr; }   /* experience: one per row */
+
+
+/* ---- 7. pieces ------------------------------------------------ */
+
+/* dotted-leader list: name ....... tag */
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc li { display: flex; align-items: baseline; gap: 8px; line-height: 26px; }
+.toc li::after { content: ""; flex: 1; border-bottom: 1px dotted var(--mute); order: 2; margin: 0 4px; }
+.toc li a { order: 1; text-decoration: none; }
+.toc li span { order: 3; color: var(--mute); font-size: 13px; }
+
+/* key : value list */
+.ledger { list-style: none; margin: 0; padding: 0; }
+.ledger li { display: grid; grid-template-columns: 84px 1fr; gap: 12px; line-height: 26px; }
+.ledger .k { color: var(--mute); }
+
+/* dated log */
+.log { list-style: none; margin: 0; padding: 0; }
+.log li { display: grid; grid-template-columns: 96px 1fr; gap: 12px; line-height: 26px; font-size: 14.5px; }
+.log time { color: var(--mute); font-variant-numeric: tabular-nums; font-size: 13px; }
+
+/* a card is a block with a label, a title, a paragraph, and tools */
+.card { display: flex; flex-direction: column; transition: transform .12s ease; }
+.card:hover { transform: translateY(-2px); }
+.card .kind { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); line-height: 26px; }
+.card h3 { font-size: 17px; line-height: 26px; }
+.card p { font-size: 14.5px; flex: 1; }
+.card .tools { font-size: 13px; color: var(--mute); line-height: 26px; }
+.card .tools b { color: var(--pen); font-weight: 600; }
+
+/* taped photos */
+.photos { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; padding-top: 6px; }
+.photo { position: relative; background: #fff; padding: 8px 8px 28px; box-shadow: 2px 3px 0 var(--shadow); margin: 0; }
+.photo img { aspect-ratio: 4 / 5; object-fit: cover; width: 170px; }
+.photo figcaption { font-family: Caveat, cursive; font-size: 17px; text-align: center; color: #3b342b; position: absolute; left: 0; right: 0; bottom: 3px; }
+.photo.l { transform: rotate(-2deg); }
+.photo.r { transform: rotate(1.5deg); }
+
+.colophon { text-align: center; color: var(--mute); font-size: 13px; margin-top: 30px; }
+
+
+/* ---- 8. mobile ------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+@media (max-width: 760px) {
+  .desk { padding: 16px 14px 32px; }
+  .cols, .cols.wide, .cards { grid-template-columns: 1fr; }
+  .bar nav a { padding: 4px 7px; font-size: 13.5px; }
+}
