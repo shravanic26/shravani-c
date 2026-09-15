@@ -136,7 +136,7 @@ body {
    so the underline lands on the first rule */
 .block > h2 { font-size: 15px; line-height: 25px; letter-spacing: .02em; border-bottom: 1px solid var(--edge); }
 .block > h2 small { font-weight: 400; color: var(--mute); font-family: "Source Sans 3", system-ui, sans-serif; margin-left: 8px; font-size: 13px; letter-spacing: 0; }
-.block h1 { font-size: 22px; line-height: 26px; }
+.block h1 { font-size: 18px; line-height: 26px; }
 
 
 /* ---- 6. layouts ---------------------------------------------------
