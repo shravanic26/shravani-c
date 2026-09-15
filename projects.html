@@ -31,19 +31,65 @@
   <main class="sheet">
     <section class="block">
       <h1>projects</h1>
-      <p>Each one gets a short write-up: what the problem was, what I built, what I'd do differently. Newest first.</p>
+      <p>Newest first. Each header says what it was; open one for the story.</p>
     </section>
 
     <div class="cards">
-      <article class="block card" id="aabc"><div class="kind">Research · UCLA · 2026</div><h3>Diet and blood markers in the Aging Adult Brain Connectome</h3><p>The Aging Adult Brain Connectome is an NIH study following more than a thousand adults from their late thirties past 100, across four sites including UCLA, with brain imaging, cognitive tests, blood work, and diet recalls. Working with two of its UCLA investigators, Dr. Helen Lavretsky and Dr. Dara Ghahremani, our team asked whether what people report eating in a 24-hour recall shows up in their blood. Across 781 participants, I fit mixed-effects models that split each nutrient into a person's habitual intake and that day's deviation from it. Habitual fiber intake and overall diet quality predicted lower glucose and lower inflammation; a single day's deviation predicted nothing. One recall is noise; averaged across visits, it's a real signal.</p><div class="tools"><b>R</b> · lme4 · PCA · Quarto</div></article>
-      <article class="block card" id="michelin"><div class="kind">Contract · Michelin Connected Fleet · 2025–</div><h3>Brake-score reliability</h3><p>Michelin Connected Fleet scores how a fleet's drivers brake, and asked our Data Science Union team how many braking events it takes before that score can be trusted. I worked on the telematics data: building the preprocessing pipeline, engineering features grounded in the physics of braking, and testing where the prediction thresholds should sit for the score to stay stable. The hard part was weighing modeling strategies against what would actually hold up once deployed on a real fleet.</p><div class="tools"><b>Python</b> · Git</div></article>
-      <article class="block card" id="kohls"><div class="kind">Internship · Kohl's · 2025–26</div><h3>Freight ETA forecasting</h3><p>Kohl's was predicting when long-haul freight would arrive with a static 60-day estimate, and it drifted every time a vendor or carrier ran late. Through the Data Science Union, I helped build a two-stage XGBoost model in Python and BigQuery that re-predicts as a shipment moves through each stage of transit, using 20+ engineered features across 5+ datasets. In my own benchmark it beat the carriers' own ETAs by about 70%.</p><div class="tools"><b>Python</b> · BigQuery · XGBoost</div></article>
-      <article class="block card" id="compas"><div class="kind">Research · UCLA · 2024–25</div><h3>Bias in the COMPAS algorithm</h3><p>Random Forest and logistic models for recidivism risk, K-Means for profile segmentation, then reweighing, threshold adjustment and proxy-variable removal to reduce racial bias.</p><div class="tools"><b>scikit-learn</b> · fairness methods</div></article>
-      <article class="block card" id="causal"><div class="kind">Research · Causal Inference Lab · 2024–25</div><h3>Assessments for "The Science of Why"</h3><p>Built the graded assessments for a 500-student causal inference course taught for the first time, from DAGs through heterogeneous treatment effects.</p><div class="tools"><b>Causal inference</b> · assessment design</div></article>
-      <article class="block card" id="foodfinder"><div class="kind">Contract · FoodFinder · 2024</div><h3>Pantry coverage map</h3><p>Led a team of four to clean 50,000+ food pantry records and ship an interactive map of regional coverage gaps for FoodFinder's public site.</p><div class="tools"><b>Python</b> · RegEx · GeoPandas · Tableau</div></article>
-      <article class="block card" id="goodreads"><div class="kind">Personal · NLP · 2023–24</div><h3>Goodreads rating prediction</h3><p>Review-text classifier on 10,000 books and 6 million ratings, 88% accuracy, with a Streamlit app that recommends the next book.</p><div class="tools"><b>PyTorch</b> · Sentence Transformers · Streamlit</div></article>
-      <article class="block card" id="iconic"><div class="kind">Contract · Iconic · 2024–25</div><h3>Automated company valuation</h3><p>Pulled financials through the Alpha Vantage API, A/B tested data providers for accuracy, and built a Tableau dashboard for parameter-driven valuation forecasts.</p><div class="tools"><b>Tableau</b> · Alpha Vantage API · Python</div></article>
-      <article class="block card" id="h1b"><div class="kind">Coursework · STATS 140XP · 2026</div><h3>H-1B visa denial rates, 2017–2023</h3><p>Does an H-1B outcome depend more on politics or on the job market? Six classmates and I merged seven years of USCIS petition data in R and tracked denial rates and new-hire ratios by industry. Denials climbed under the Trump administration and fell after Biden's reversals with no change to the law, and COVID pushed employers toward keeping existing visa holders over sponsoring new ones.</p><div class="tools"><b>R</b> · Quarto · <a href="files/h1b-report.pdf">read the report →</a></div></article>
+
+      <details class="block card" id="aabc">
+        <summary><span class="kind">Research · UCLA · 2026</span><span class="t">Diet and blood markers in the Aging Adult Brain Connectome</span><span class="gist">Habitual diet predicts glucose and inflammation; a single day's recall predicts nothing.</span></summary>
+        <p>The Aging Adult Brain Connectome is an NIH study following a thousand-plus adults, from their late thirties past 100, at four sites including UCLA. Working with two of its UCLA investigators, Dr. Helen Lavretsky and Dr. Dara Ghahremani, our team asked whether what people report eating in a 24-hour recall shows up in their blood. Across 781 participants I fit mixed-effects models that split each nutrient into a person's habitual intake and that day's deviation from it. Habitual fiber and overall diet quality predicted lower glucose and lower inflammation; a single day's deviation predicted nothing. One recall is noise; averaged across visits, it's a real signal.</p>
+        <div class="tools"><b>R</b> · lme4 · PCA · Quarto</div>
+      </details>
+
+      <details class="block card" id="h1b">
+        <summary><span class="kind">Coursework · STATS 140XP · 2026</span><span class="t">H-1B visa denial rates, 2017–2023</span><span class="gist">Denials tracked the administration in office more than the job market.</span></summary>
+        <p>Does an H-1B outcome depend more on politics or on the job market? Six classmates and I merged seven years of USCIS petition data in R and tracked denial rates and new-hire ratios by industry. Denials climbed under the Trump administration and fell after Biden's reversals with no change to the law, and COVID pushed employers toward keeping existing visa holders over sponsoring new ones.</p>
+        <div class="tools"><b>R</b> · Quarto · <a href="files/h1b-report.pdf">read the report →</a></div>
+      </details>
+
+      <details class="block card" id="michelin">
+        <summary><span class="kind">Contract · Michelin Connected Fleet · 2025–</span><span class="t">Brake-score reliability</span><span class="gist">How many braking events before a driver's brake score can be trusted?</span></summary>
+        <p>Michelin Connected Fleet scores how a fleet's drivers brake, and asked our Data Science Union team how many braking events it takes before that score can be trusted. I worked on the telematics data: building the preprocessing pipeline, engineering features grounded in the physics of braking, and testing where the prediction thresholds should sit for the score to stay stable. The hard part was weighing modeling strategies against what would actually hold up once deployed on a real fleet.</p>
+        <div class="tools"><b>Python</b> · Git</div>
+      </details>
+
+      <details class="block card" id="kohls">
+        <summary><span class="kind">Internship · Kohl's · 2025–26</span><span class="t">Freight ETA forecasting</span><span class="gist">A two-stage XGBoost model that re-predicts arrival at each stage of transit.</span></summary>
+        <p>Kohl's was predicting when long-haul freight would arrive with a static 60-day estimate, and it drifted every time a vendor or carrier ran late. Through the Data Science Union, I helped build a two-stage XGBoost model in Python and BigQuery that re-predicts as a shipment moves through each stage of transit, using 20+ engineered features across 5+ datasets. In my own benchmark it beat the carriers' own ETAs by about 70%.</p>
+        <div class="tools"><b>Python</b> · BigQuery · XGBoost</div>
+      </details>
+
+      <details class="block card" id="compas">
+        <summary><span class="kind">Research · UCLA · 2024–25</span><span class="t">Bias in the COMPAS algorithm</span><span class="gist">Measuring, then reducing, racial bias in a recidivism risk score.</span></summary>
+        <p>COMPAS is a risk score U.S. courts have used to predict whether a defendant will reoffend, and it is known to flag Black defendants as high-risk at higher rates than white defendants with similar records. I rebuilt the risk classification with Random Forest and logistic regression, segmented defendant profiles with K-Means, and then tested what actually reduces the disparity: reweighing the training data, setting decision thresholds by group, and dropping race along with the variables that stand in for it.</p>
+        <div class="tools"><b>scikit-learn</b> · fairness methods</div>
+      </details>
+
+      <details class="block card" id="causal">
+        <summary><span class="kind">Research · Precision Interventions Lab · 2024–25</span><span class="t">Assessments for "The Science of Why"</span><span class="gist">Designing the graded assessments for a 500-student causal inference course.</span></summary>
+        <p>Dr. Falco Bargagli-Stoffi was teaching "The Science of Why," a causal inference course, for the first time, to more than 500 students, and needed assessments that would show where students were struggling. I designed them: chose the readings, wrote questions built to provoke debate rather than recall, and iterated the format with him until a read-a-document-then-answer style worked. The constraint that shaped it: students had AI tools, so the questions had to stay hard anyway. On the research side I cleaned and evaluated prostate cancer clinical trial data used to test one of the lab's methods.</p>
+        <div class="tools"><b>Causal inference</b> · assessment design · R</div>
+      </details>
+
+      <details class="block card" id="foodfinder">
+        <summary><span class="kind">Contract · FoodFinder · 2024</span><span class="t">Pantry coverage map</span><span class="gist">Cleaning 50,000+ food pantry listings and mapping where coverage is missing.</span></summary>
+        <p>FoodFinder maps free food pantries so people can find one nearby, and its listings had drifted: 50,000+ entries with inconsistent addresses and hours. I led a team of four to clean and restructure them in Python, mapped the results in Tableau to show where coverage was thin, and built an interactive map in GeoPandas for the public site.</p>
+        <div class="tools"><b>Python</b> · RegEx · GeoPandas · Tableau</div>
+      </details>
+
+      <details class="block card" id="goodreads">
+        <summary><span class="kind">Personal · NLP · 2023–24</span><span class="t">Goodreads rating prediction</span><span class="gist">Predicting a review's star rating from its text, at 88% accuracy.</span></summary>
+        <p>Six million Goodreads ratings across 10,000 books: could a model read a review and predict the stars? I built a classifier in PyTorch on Sentence Transformer embeddings of the review text and got to 88% accuracy, then wrapped it in a Streamlit app that recommends the next book.</p>
+        <div class="tools"><b>PyTorch</b> · Sentence Transformers · Streamlit</div>
+      </details>
+
+      <details class="block card" id="iconic">
+        <summary><span class="kind">Contract · Iconic · 2024–25</span><span class="t">Automated company valuation</span><span class="gist">From API financials to a live Tableau valuation dashboard.</span></summary>
+        <p>Iconic, a financial-analytics startup, was valuing companies by hand. I automated the pipeline: pulled financials through the Alpha Vantage API, compared valuation multiples like EV/Revenue and EV/EBITDA, and A/B tested data providers to pick the most accurate one, all feeding a Tableau dashboard where you change an assumption and the valuation updates.</p>
+        <div class="tools"><b>Python</b> · Alpha Vantage API · Tableau</div>
+      </details>
+
     </div>
   </main>
 

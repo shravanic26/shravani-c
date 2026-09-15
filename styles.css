@@ -184,7 +184,17 @@ body {
 .log li { display: grid; grid-template-columns: 96px 1fr; gap: 12px; line-height: 26px; font-size: 14.5px; }
 .log time { color: var(--mute); font-variant-numeric: tabular-nums; font-size: 13px; }
 
-/* a card is a block with a label, a title, a paragraph, and tools */
+/* a card is a block with a label, a title, a paragraph, and tools.
+   On the projects page a card is a <details>: the <summary> (label, title,
+   one-line gist) always shows; the story and tools open on click. */
+.card summary { list-style: none; cursor: pointer; position: relative; padding-right: 22px; }
+.card summary::-webkit-details-marker { display: none; }
+.card summary::after { content: "+"; position: absolute; right: 0; top: 0; line-height: 26px; color: var(--mute); font-size: 18px; }
+.card[open] summary::after { content: "–"; }
+.card summary:focus-visible { outline: 2px solid var(--pen); outline-offset: 4px; }
+.card .t { display: block; font-family: "Source Serif 4", Georgia, serif; font-weight: 600; font-size: 17px; line-height: 26px; }
+.card .gist { display: block; color: var(--mute); font-size: 14.5px; line-height: 26px; }
+
 .card { display: flex; flex-direction: column; transition: transform .12s ease; }
 .card:hover { transform: translateY(-2px); }
 .card .kind { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); line-height: 26px; }
