@@ -179,6 +179,11 @@ body {
 }
 .recent li > span:last-child:not(.chip) { color: var(--mute); }
 
+/* plain list: one item per ruled line, a short dash in the margin */
+.list { list-style: none; margin: 0; padding: 0; }
+.list li { line-height: 26px; padding-left: 18px; position: relative; }
+.list li::before { content: "–"; position: absolute; left: 0; color: var(--mute); }
+
 /* dated log */
 .log { list-style: none; margin: 0; padding: 0; }
 .log li { display: grid; grid-template-columns: 96px 1fr; gap: 12px; line-height: 26px; font-size: 14.5px; }
