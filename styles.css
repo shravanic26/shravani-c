@@ -211,6 +211,10 @@ body {
 .photo.l { transform: rotate(-2deg); }
 .photo.r { transform: rotate(1.5deg); }
 
+/* the "under construction" line: a little traffic cone drawn in ink */
+.wip { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--mute); font-size: 13.5px; }
+.wip svg { width: 18px; height: 18px; fill: none; stroke: var(--pen); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; flex: none; }
+
 .colophon { text-align: center; color: var(--mute); font-size: 13px; margin-top: 30px; }
 
 
