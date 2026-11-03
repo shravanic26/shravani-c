@@ -217,6 +217,8 @@ body {
 .photo figcaption { font-family: Caveat, cursive; font-size: 17px; text-align: center; color: #3b342b; position: absolute; left: 0; right: 0; bottom: 3px; }
 .photo.l { transform: rotate(-2deg); }
 .photo.r { transform: rotate(1.5deg); }
+.photo.side { float: right; margin: 6px 4px 12px 22px; padding-bottom: 8px; }
+.block.has-photo { display: flow-root; }   /* block grows to fit the floated photo */
 
 /* the "under construction" line: a little traffic cone drawn in ink */
 .wip { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--mute); font-size: 13.5px; }
@@ -232,4 +234,5 @@ body {
   .desk { padding: 16px 14px 32px; }
   .cols, .cols.wide, .cards { grid-template-columns: 1fr; }
   .bar nav a { padding: 4px 7px; font-size: 13.5px; }
+  .photo.side { float: none; width: max-content; margin: 8px auto 16px; }
 }
