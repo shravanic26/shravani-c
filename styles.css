@@ -2,14 +2,14 @@
    shravani-c · styles.css
    Hand-written CSS, no frameworks.
 
-   The idea: ruled note sheets pinned to a dotted desk pad.
+   The idea: ruled note sheets pinned to a desk.
    Every page is a few "blocks" (one ruled sheet each) laid out
    on the desk, under one thin header strip that holds the nav.
 
    How to read this file:
      1. tokens   — every color lives here; change one, it changes everywhere
      2. base     — body, links, headings
-     3. desk     — the dotted background and page width
+     3. desk     — the background and page width
      4. bar      — the header strip with the nav
      5. block    — the ruled sheet, the pin, the title underline
      6. layouts  — how blocks sit next to each other
@@ -25,7 +25,6 @@
 :root {
   color-scheme: light;
   --desk:   #ebe5d9;   /* the desk pad */
-  --dot:    #c4b9a6;   /* the dots on it */
   --paper:  #f6f1e7;   /* a sheet */
   --line:   #dfd7c9;   /* the rules on a sheet */
   --edge:   #c9bfae;   /* sheet border, title underline */
@@ -39,7 +38,6 @@
 [data-theme="dark"] {
   color-scheme: dark;
   --desk:   #1a1816;
-  --dot:    #34302b;
   --paper:  #26231f;
   --line:   #35312b;
   --edge:   #3f3a33;
@@ -78,13 +76,9 @@ p { margin: 0; }
 
 
 /* ---- 3. desk ----------------------------------------------------
-   The dotted pad is one tiny radial gradient (a dot) repeated
-   every 16px. Change 16px for a denser or sparser grid, 1px for
-   bigger dots. */
+   A plain desk color behind the sheets. */
 body {
   background-color: var(--desk);
-  background-image: radial-gradient(var(--dot) 1px, transparent 1.4px);
-  background-size: 16px 16px;
 }
 
 .desk { max-width: 980px; margin: 0 auto; padding: 28px 24px 40px; }
